@@ -6,19 +6,36 @@
   <title>GIFdot 공유</title>
   <style>
     :root {
-      --bg-1: #fff6ea;
-      --bg-2: #ffe0cc;
-      --card: rgba(255, 255, 255, 0.82);
-      --card-border: rgba(255, 255, 255, 0.72);
-      --text: #1f1a17;
-      --muted: #6c625b;
-      --accent: #ff6f3d;
-      --accent-strong: #ef4f1a;
-      --accent-soft: #ffd4c4;
-      --shadow: 0 24px 60px rgba(173, 84, 42, 0.16);
-      --radius-xl: 28px;
-      --radius-lg: 20px;
-      --radius-md: 14px;
+      --bg-1: #eef4ff;
+      --bg-2: #dce7ff;
+      --bg-3: #f8fbff;
+
+      --navy-900: #172a6b;
+      --navy-800: #213c86;
+      --navy-700: #2f56a6;
+
+      --ice-100: #f8fbff;
+      --ice-200: #edf5ff;
+      --ice-300: #d7e7ff;
+      --ice-400: #bfd8ff;
+
+      --pink-500: #d84d98;
+      --pink-600: #c83f89;
+      --pink-200: #f7c2df;
+
+      --text: #1b2550;
+      --muted: #5f6f9d;
+
+      --card: rgba(255, 255, 255, 0.72);
+      --card-border: rgba(255, 255, 255, 0.7);
+      --hero-border: rgba(255, 255, 255, 0.15);
+
+      --shadow-lg: 0 28px 70px rgba(34, 58, 132, 0.22);
+      --shadow-md: 0 18px 36px rgba(28, 49, 118, 0.16);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+
       --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
     }
 
@@ -30,9 +47,9 @@
       font-family: var(--font);
       color: var(--text);
       background:
-        radial-gradient(circle at top left, #fffdf7 0%, transparent 32%),
-        radial-gradient(circle at bottom right, #ffc9a9 0%, transparent 30%),
-        linear-gradient(160deg, var(--bg-1) 0%, var(--bg-2) 100%);
+        radial-gradient(circle at 10% 0%, rgba(255,255,255,0.92), transparent 28%),
+        radial-gradient(circle at 100% 100%, rgba(215,231,255,0.95), transparent 34%),
+        linear-gradient(160deg, var(--bg-3) 0%, var(--bg-1) 48%, var(--bg-2) 100%);
     }
 
     body {
@@ -49,24 +66,25 @@
 
     .glow {
       position: absolute;
-      inset: -18px;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.9), transparent 40%),
-        radial-gradient(circle at 80% 10%, rgba(255,140,89,0.28), transparent 34%),
-        radial-gradient(circle at 60% 100%, rgba(255,194,158,0.38), transparent 34%);
-      filter: blur(18px);
+      inset: -20px;
       z-index: 0;
       pointer-events: none;
+      background:
+        radial-gradient(circle at 18% 16%, rgba(255,255,255,0.95), transparent 28%),
+        radial-gradient(circle at 80% 12%, rgba(79,118,220,0.18), transparent 30%),
+        radial-gradient(circle at 80% 82%, rgba(216,77,152,0.16), transparent 26%),
+        radial-gradient(circle at 40% 100%, rgba(190,214,255,0.32), transparent 34%);
+      filter: blur(20px);
     }
 
     .card {
       position: relative;
       z-index: 1;
-      padding: 24px;
+      padding: 22px;
       border-radius: var(--radius-xl);
       background: var(--card);
       border: 1px solid var(--card-border);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-lg);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       overflow: hidden;
@@ -75,85 +93,91 @@
     .hero {
       position: relative;
       padding: 22px;
-      border-radius: 24px;
-      background:
-        linear-gradient(135deg, #ff8f64 0%, #ff6f3d 48%, #ffb05a 100%);
+      border-radius: 26px;
       color: white;
       overflow: hidden;
+      border: 1px solid var(--hero-border);
+      background:
+        radial-gradient(circle at 88% 78%, rgba(216,77,152,0.26), transparent 14%),
+        radial-gradient(circle at 14% 14%, rgba(255,255,255,0.12), transparent 20%),
+        linear-gradient(160deg, #243f8d 0%, #1a2f74 40%, #152660 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 20px 42px rgba(20, 37, 93, 0.28);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: auto -32px -42px auto;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(216,77,152,0.34) 0%, rgba(216,77,152,0) 70%);
+      pointer-events: none;
     }
 
     .hero::after {
       content: "";
       position: absolute;
-      width: 180px;
-      height: 180px;
-      right: -56px;
-      top: -54px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.18);
-      filter: blur(2px);
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.06), transparent 22%, transparent 72%, rgba(255,255,255,0.03));
+      pointer-events: none;
     }
 
     .hero-top {
+      position: relative;
+      z-index: 1;
       display: flex;
       align-items: center;
       gap: 14px;
-      position: relative;
-      z-index: 1;
     }
 
     .app-icon {
-      width: 64px;
-      height: 64px;
-      border-radius: 18px;
-      background:
-        linear-gradient(160deg, rgba(255,255,255,0.96), rgba(255,255,255,0.74));
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.7),
-        0 10px 24px rgba(155, 54, 11, 0.22);
+      width: 70px;
+      height: 70px;
+      border-radius: 20px;
+      overflow: hidden;
+      flex: 0 0 auto;
       display: grid;
       place-items: center;
-      flex: 0 0 auto;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08));
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.28),
+        0 12px 30px rgba(6, 14, 47, 0.28);
+      border: 1px solid rgba(255,255,255,0.16);
     }
 
-    .app-icon span {
+    .app-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .app-icon-fallback {
       font-size: 28px;
+      filter: drop-shadow(0 2px 8px rgba(255,255,255,0.18));
     }
 
     .app-meta h1 {
       margin: 0;
-      font-size: 28px;
-      line-height: 1;
-      letter-spacing: -0.03em;
+      font-size: 24px;
+      line-height: 1.12;
+      letter-spacing: -0.035em;
       font-weight: 800;
+      color: #ffffff;
+      text-shadow: 0 1px 8px rgba(12, 22, 60, 0.18);
     }
 
     .app-meta p {
       margin: 8px 0 0;
       font-size: 14px;
       line-height: 1.45;
-      color: rgba(255,255,255,0.9);
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 18px 0 0;
-      position: relative;
-      z-index: 1;
-    }
-
-    .chip {
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.16);
-      border: 1px solid rgba(255,255,255,0.18);
-      font-size: 12px;
-      font-weight: 700;
       letter-spacing: -0.01em;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      color: rgba(239, 246, 255, 0.9);
     }
 
     .content {
@@ -166,23 +190,24 @@
       font-weight: 800;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--accent-strong);
+      color: var(--navy-700);
     }
 
     .headline {
       margin: 0;
       font-size: 28px;
-      line-height: 1.15;
-      letter-spacing: -0.04em;
+      line-height: 1.16;
+      letter-spacing: -0.045em;
       font-weight: 850;
+      color: var(--navy-900);
     }
 
     .desc {
       margin: 12px 0 0;
       font-size: 15px;
-      line-height: 1.65;
-      color: var(--muted);
+      line-height: 1.68;
       letter-spacing: -0.01em;
+      color: var(--muted);
     }
 
     .actions {
@@ -212,16 +237,26 @@
       min-height: 58px;
       padding: 16px 18px;
       border-radius: 18px;
-      background: linear-gradient(180deg, var(--accent) 0%, var(--accent-strong) 100%);
       color: white;
       font-size: 17px;
       font-weight: 800;
       letter-spacing: -0.02em;
-      box-shadow: 0 18px 28px rgba(239, 79, 26, 0.24);
+      background:
+        linear-gradient(180deg, var(--navy-700) 0%, var(--navy-900) 100%);
+      box-shadow:
+        0 16px 30px rgba(27, 45, 110, 0.22),
+        inset 0 1px 0 rgba(255,255,255,0.12);
     }
 
-    .share-btn:hover {
-      box-shadow: 0 20px 34px rgba(239, 79, 26, 0.28);
+    .share-btn span:first-child {
+      display: inline-grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: rgba(216,77,152,0.95);
+      box-shadow: 0 4px 12px rgba(200,63,137,0.28);
+      font-size: 14px;
     }
 
     .copy-btn {
@@ -229,10 +264,22 @@
       min-height: 54px;
       padding: 14px 18px;
       border-radius: 16px;
-      background: rgba(255,255,255,0.78);
-      color: var(--text);
-      border: 1px solid rgba(31,26,23,0.08);
       font-size: 15px;
+      font-weight: 700;
+      color: var(--navy-900);
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(241,247,255,0.88));
+      border: 1px solid rgba(111, 145, 220, 0.16);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.8),
+        0 10px 24px rgba(46, 76, 150, 0.08);
+    }
+
+    .status {
+      min-height: 22px;
+      margin-top: 12px;
+      font-size: 13px;
+      text-align: center;
+      color: var(--pink-600);
       font-weight: 700;
     }
 
@@ -244,21 +291,12 @@
       text-align: center;
     }
 
-    .status {
-      min-height: 22px;
-      margin-top: 12px;
-      font-size: 13px;
-      text-align: center;
-      color: var(--accent-strong);
-      font-weight: 700;
-    }
-
     @media (max-width: 420px) {
       body { padding: 16px; }
       .card { padding: 18px; }
       .hero { padding: 18px; }
       .headline { font-size: 24px; }
-      .app-meta h1 { font-size: 24px; }
+      .app-meta h1 { font-size: 22px; }
     }
   </style>
 </head>
@@ -270,18 +308,14 @@
       <div class="hero">
         <div class="hero-top">
           <div class="app-icon" aria-hidden="true">
-            <span>🎞️</span>
+            <img id="appIcon" alt="" hidden />
+            <span id="appIconFallback" class="app-icon-fallback">🎞️</span>
           </div>
-          <div class="app-meta">
-            <h1>GIFdot</h1>
-            <p>여러 영상을 한 번에 GIF(움짤)로 변환할 수 있는 쉽고 간편한 앱</p>
-          </div>
-        </div>
 
-        <div class="chips">
-          <div class="chip">Batch GIF</div>
-          <div class="chip">Easy Edit</div>
-          <div class="chip">Fast Export</div>
+          <div class="app-meta">
+            <h1 id="appTitle">GIFdot</h1>
+            <p id="appSubtitle">여러 영상을 한 번에 GIF(움짤)로 변환할 수 있는 쉽고 간편한 앱</p>
+          </div>
         </div>
       </div>
 
@@ -289,8 +323,7 @@
         <p class="eyebrow">Share App</p>
         <h2 class="headline">GIFdot을 바로 공유해보세요.</h2>
         <p class="desc">
-          아래 버튼을 누르면 기기의 네이티브 공유 시트가 열립니다.
-          공유를 지원하지 않는 환경에서는 링크를 자동으로 복사합니다.
+          아래 버튼을 눌러 친구에게 앱을 공유해보세요!
         </p>
 
         <div class="actions">
@@ -305,32 +338,118 @@
         </div>
 
         <div id="status" class="status" aria-live="polite"></div>
-        <p class="foot">iPhone에서는 Safari에서 가장 자연스럽게 동작합니다.</p>
+        <p class="foot">© 2026 Motion&Dot</p>
       </div>
     </section>
   </main>
 
   <script>
-    const targetUrl = "https://apps.apple.com/kr/app/id6759234948";
-    const statusEl = document.getElementById("status");
+    const APP_ID = "6759234948";
+    const DEFAULT_STORE_URL = "https://apps.apple.com/kr/app/id6759234948";
 
-    const shareData = {
+    const statusEl = document.getElementById("status");
+    const appTitleEl = document.getElementById("appTitle");
+    const appIconEl = document.getElementById("appIcon");
+    const appIconFallbackEl = document.getElementById("appIconFallback");
+
+    let appData = {
       title: "GIFdot",
-      text: "여러 영상을 한 번에 GIF(움짤)로 변환할 수 있는 쉽고 간편한 앱! GIFdot을 사용해보세요.",
-      url: targetUrl
+      subtitle: "여러 영상을 한 번에 GIF(움짤)로 변환할 수 있는 쉽고 간편한 앱",
+      url: DEFAULT_STORE_URL,
+      iconUrl: ""
     };
+
+    let appLookupPromise = null;
 
     function setStatus(message) {
       statusEl.textContent = message;
     }
 
+    function applyAppData(data) {
+      if (data.title) {
+        appData.title = data.title;
+        appTitleEl.textContent = data.title;
+        document.title = data.title + " 공유";
+      }
+
+      if (data.url) {
+        appData.url = data.url;
+      }
+
+      if (data.iconUrl) {
+        appData.iconUrl = data.iconUrl;
+        appIconEl.src = data.iconUrl;
+        appIconEl.onload = () => {
+          appIconEl.hidden = false;
+          appIconFallbackEl.hidden = true;
+        };
+      }
+    }
+
+    function loadAppStoreMetadata() {
+      if (appLookupPromise) return appLookupPromise;
+
+      appLookupPromise = new Promise((resolve, reject) => {
+        const callbackName = "itunesLookup_" + Math.random().toString(36).slice(2);
+        const script = document.createElement("script");
+        const timeout = setTimeout(() => {
+          cleanup();
+          reject(new Error("lookup timeout"));
+        }, 5000);
+
+        function cleanup() {
+          clearTimeout(timeout);
+          delete window[callbackName];
+          script.remove();
+        }
+
+        window[callbackName] = (payload) => {
+          cleanup();
+
+          const result = payload?.results?.[0];
+          if (!result) {
+            reject(new Error("no result"));
+            return;
+          }
+
+          resolve({
+            title: result.trackName || "GIFdot",
+            url: result.trackViewUrl || DEFAULT_STORE_URL,
+            iconUrl: result.artworkUrl512 || result.artworkUrl100 || ""
+          });
+        };
+
+        script.onerror = () => {
+          cleanup();
+          reject(new Error("lookup failed"));
+        };
+
+        script.src = `https://itunes.apple.com/lookup?id=${APP_ID}&country=kr&callback=${callbackName}`;
+        document.head.appendChild(script);
+      });
+
+      return appLookupPromise;
+    }
+
+    async function ensureAppStoreMetadata() {
+      try {
+        const data = await loadAppStoreMetadata();
+        applyAppData(data);
+      } catch {
+        applyAppData({
+          title: "GIFdot",
+          url: DEFAULT_STORE_URL
+        });
+      }
+    }
+
     async function copyLink(showMessage = true) {
       try {
         if (navigator.clipboard && window.isSecureContext) {
-          await navigator.clipboard.writeText(targetUrl);
+          await navigator.clipboard.writeText(appData.url);
         } else {
           const textArea = document.createElement("textarea");
-          textArea.value = targetUrl;
+          textArea.value = appData.url;
           textArea.style.position = "fixed";
           textArea.style.opacity = "0";
           document.body.appendChild(textArea);
@@ -340,27 +459,27 @@
           document.body.removeChild(textArea);
         }
 
-        if (showMessage) {
-          setStatus("링크가 복사되었습니다.");
-        }
+        if (showMessage) setStatus("링크가 복사되었습니다.");
       } catch {
         setStatus("복사에 실패했습니다. 아래 링크를 직접 복사해주세요.");
-        window.prompt("이 링크를 복사하세요.", targetUrl);
+        window.prompt("이 링크를 복사하세요.", appData.url);
       }
     }
 
     document.getElementById("shareBtn").addEventListener("click", async () => {
       setStatus("");
+      await ensureAppStoreMetadata();
 
       if (navigator.share) {
         try {
-          await navigator.share(shareData);
+          await navigator.share({
+            title: appData.title,
+            text: `${appData.title} 앱 링크`,
+            url: appData.url
+          });
           return;
         } catch (error) {
-          if (error && error.name === "AbortError") {
-            setStatus("");
-            return;
-          }
+          if (error && error.name === "AbortError") return;
         }
       }
 
@@ -369,8 +488,11 @@
 
     document.getElementById("copyBtn").addEventListener("click", async () => {
       setStatus("");
+      await ensureAppStoreMetadata();
       await copyLink(true);
     });
+
+    ensureAppStoreMetadata();
   </script>
 </body>
 </html>
