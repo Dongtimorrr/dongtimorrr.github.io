@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GIFdot 공유</title>
+</head>
+<body>
+  <button id="shareBtn">공유하기</button>
+  <button id="copyBtn">링크 복사</button>
+
+  <script>
+    const targetUrl = "https://apps.apple.com/app/id6759234948";
+
+    document.getElementById("shareBtn").addEventListener("click", async () => {
+      try {
+        if (navigator.share) {
+          await navigator.share({
+            title: "GIFdot",
+            text: "GIFdot 앱 링크",
+            url: targetUrl
+          });
+        } else {
+          await navigator.clipboard.writeText(targetUrl);
+          alert("공유를 지원하지 않아 링크를 복사했습니다.");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    });
+
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      await navigator.clipboard.writeText(targetUrl);
+      alert("링크가 복사되었습니다.");
+    });
+  </script>
+</body>
+</html>
